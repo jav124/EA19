@@ -1,27 +1,31 @@
-<ion-content [fullscreen]="true">
-  <div style="height: 100vh; background-color: rgb(122, 122, 122);">
-    <header style="background-color: rgb(0, 0, 0); padding: 20px;">
-      <h1 class="ion-text-center" style="color: rgb(255, 255, 255);">Galería de Imágenes</h1>
+<ion-content [fullscreen]="true" class="flex items-center justify-center min-h-screen bg-gray-800 text-white">
+  <div class="w-full max-w-2xl bg-gray-900 shadow-lg rounded-lg p-6">
+    <header class="bg-black p-4 text-center rounded-t-lg">
+      <h1 class="text-xl font-bold">Galería de Imágenes</h1>
     </header>
-    <br>
-    <div>
-      <ion-button (click)="navigateToLogin()">Login</ion-button>
-      <ion-button (click)="navigateToSignUp()">Sign Up</ion-button>
+
+    <div class="flex justify-center gap-4 mt-4">
+      <ion-button expand="full" color="primary" (click)="navigateToLogin()">Login</ion-button>
+      <ion-button expand="full" color="secondary" (click)="navigateToSignUp()">Sign Up</ion-button>
     </div>
-    <form (ngSubmit)="addImage(imageUrl)" #form="ngForm">
+
+    <form (ngSubmit)="addImage(imageUrl)" #form="ngForm" class="mt-6 space-y-4">
       <div>
-        <label for="imageUrl">URL de la Imagen</label>
-        <input id="imageUrl" name="imageUrl" [(ngModel)]="imageUrl" required #imageUrlInput="ngModel">
-        <div *ngIf="imageUrlInput.invalid && imageUrlInput.touched" style="color: red;">Por favor, ingrese una URL.</div>
+        <label for="imageUrl" class="block text-sm font-medium">URL de la Imagen</label>
+        <input id="imageUrl" name="imageUrl" [(ngModel)]="imageUrl" required #imageUrlInput="ngModel"
+          class="w-full p-2 border rounded-lg text-black">
+        <div *ngIf="imageUrlInput.invalid && imageUrlInput.touched" class="text-red-500 text-sm mt-1">Por favor, ingrese una URL.</div>
       </div>
-      <button type="submit" [disabled]="form.invalid">Agregar Imagen</button>
+      <button type="submit" [disabled]="form.invalid"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg">Agregar Imagen</button>
     </form>
-    <br><br><br>
-    <div class="container" style="background-color: rgb(141, 141, 141);">
-      <div class="gallery">
-        <div *ngFor="let image of images$ | async" class="gallery-item">
-          <img [src]="image.url" alt="Imagen" style="width: 10%; height: auto;">
-          <button (click)="deleteImage(image.id)">Eliminar</button>
+
+    <div class="mt-6 bg-gray-700 p-4 rounded-lg">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div *ngFor="let image of images$ | async" class="relative">
+          <img [src]="image.url" alt="Imagen" class="w-full h-40 object-cover rounded-lg">
+          <button (click)="deleteImage(image.id)"
+            class="absolute top-2 right-2 bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1 rounded-lg">Eliminar</button>
         </div>
       </div>
     </div>
