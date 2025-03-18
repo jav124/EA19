@@ -1,41 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>sign-up</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="flex items-center justify-center min-h-screen bg-gray-900 text-white">
+  <div class="w-full max-w-md bg-gray-800 shadow-lg rounded-lg p-6">
+    <header class="bg-black p-4 text-center rounded-t-lg">
+      <h1 class="text-xl font-bold">Sign Up</h1>
+    </header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">sign-up</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="mt-6 space-y-4">
+      <div>
+        <label for="email" class="block text-sm font-medium">Email address</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" required #emailInput="ngModel"
+          class="w-full p-2 border rounded-lg text-black focus:ring-2 focus:ring-blue-500">
+        <div *ngIf="emailInput.invalid && emailInput.touched" class="text-red-500 text-sm mt-1">Please enter a valid email address.</div>
+      </div>
 
-  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-    <div class="mb-6">
-      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
-      <input type="email" id="email" name="email" [(ngModel)]="email"
-             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-             placeholder="john.doe@company.com" required #emailInput="ngModel" />
-      <div *ngIf="emailInput.invalid && emailInput.touched" style="color: red;">Please enter a valid email address.</div>
+      <div>
+        <label for="password" class="block text-sm font-medium">Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required #passwordInput="ngModel"
+          class="w-full p-2 border rounded-lg text-black focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <button type="submit" [disabled]="registerForm.invalid"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg">Crear Cuenta</button>
+    </form>
+
+    <div class="flex justify-center mt-4">
+      <button (click)="onSignUp()"
+        class="bg-gray-700 hover:bg-gray-600 text-white font-medium px-4 py-2 rounded-lg">Go to Login</button>
     </div>
-
-    <div class="mb-6">
-      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-      <input type="password" id="password" name="password" [(ngModel)]="password"
-             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-             placeholder="********" required #passwordInput="ngModel" />
-    </div>
-
-    <button type="submit"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            [disabled]="registerForm.invalid">
-      Crear Cuenta
-    </button>
-  </form>
-
-  <button (click)="onSignUp()"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-    Go to Login
-  </button>
+  </div>
 </ion-content>
