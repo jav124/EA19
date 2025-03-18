@@ -1,36 +1,43 @@
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condensed">
-      <ion-toolbar>
-          <ion-title size="large">Login</ion-title>
+<ion-content [fullscreen]="true" class="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
+  <div class="w-full max-w-md bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+    <ion-header>
+      <ion-toolbar class="bg-blue-700 text-white rounded-t-lg">
+        <ion-title size="large" class="text-center">Login</ion-title>
       </ion-toolbar>
-  </ion-header>
+    </ion-header>
 
-  <ion-content>
-      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-          <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
-              <input type="email" id="email" name="email" [(ngModel)]="email"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.doe@company.com" required #emailInput="ngModel">
-              <div *ngIf="emailInput.invalid && emailInput.touched" style="color: red;">Please enter a valid email address.</div>
-          </div>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="space-y-4 mt-4">
+      <div>
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email"
+          class="w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-blue-500 focus:border-blue-500"
+          placeholder="john.doe@company.com" required #emailInput="ngModel">
+        <div *ngIf="emailInput.invalid && emailInput.touched" class="text-red-500 text-sm mt-1">Please enter a valid email address.</div>
+      </div>
 
-          <div>
-              <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-              <input type="password" id="password" name="password" [(ngModel)]="password"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="••••••••" required #passwordInput="ngModel">
-          </div>
+      <div>
+        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password"
+          class="w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-blue-500 focus:border-blue-500"
+          placeholder="••••••••" required #passwordInput="ngModel">
+      </div>
 
-          <button type="submit"
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" [disabled]="loginForm.invalid">
-              Login
-          </button>
-      </form>
-
-      <button (click)="onReset()">
-          Reset
-      </button><br>
-      <button (click)="onSignUp()">
-          Sign Up
+      <button type="submit"
+        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        [disabled]="loginForm.invalid">
+        Login
       </button>
-  </ion-content>
+    </form>
+
+    <div class="flex justify-between mt-4">
+      <button (click)="onReset()"
+        class="w-1/2 text-gray-700 dark:text-white bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 px-4 py-2 rounded-lg mr-2">
+        Reset
+      </button>
+      <button (click)="onSignUp()"
+        class="w-1/2 text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg">
+        Sign Up
+      </button>
+    </div>
+  </div>
 </ion-content>
